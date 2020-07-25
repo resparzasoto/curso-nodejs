@@ -1,0 +1,27 @@
+{
+  "name": "curso-nodejs",
+  "version": "0.1.0",
+  "description": "Curso de NodeJS",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/resparzasoto/curso-nodejs.git"
+  },
+  "keywords": [
+    "chat",
+    "telegram",
+    "server"
+  ],
+  "author": "@resparzasoto",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/resparzasoto/curso-nodejs/issues"
+  },
+  "homepage": "https://github.com/resparzasoto/curso-nodejs#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
