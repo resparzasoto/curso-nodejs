@@ -1,17 +1,27 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const router = express.Router();
 
 var app = express();
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(router);
 
-router.get('/message', (req, res) => res.send('Lista de Mensajes'));
-
-router.post('/message', (req, res) => res.send('Mensaje añadido'));
-
-router.delete('/message', (req, res) => res.send('Mensaje eliminado'));
-
-// app.use('/', (req, res) => res.send('Hola Mundo'));
+router.get('/message', (req, res) => {
+    console.log(req.query);
+    console.log(req.body);
+    res.send('Lista de Mensajes')
+});
+router.post('/message', (req, res) => {
+    console.log(req.query);
+    console.log(req.body);
+    res.send(`Mensaje ${req.body.text} añadido correctamente`)
+});
+router.delete('/message', (req, res) => {
+    console.log(req.query);
+    console.log(req.body);
+    res.send(`Mensaje ${req.body.text} eliminado correctamente`);
+});
 
 app.listen(3000);
 console.log('La aplicación está escuchando en http://localhost:3000');
