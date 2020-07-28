@@ -8,8 +8,10 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(router);
 
 router.get('/message', (req, res) => {
+    console.log(req.headers);
     console.log(req.query);
     console.log(req.body);
+    res.header("custom-header", "valor personalizado");
     res.send('Lista de Mensajes')
 });
 router.post('/message', (req, res) => {
