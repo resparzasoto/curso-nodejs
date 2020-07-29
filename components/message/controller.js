@@ -1,10 +1,11 @@
+const store = require('./store');
 const chalk = require('chalk');
 
 const addMessage = (user, message) => {
     return new Promise((resolve, reject) => {
         if (!user || !message) {
             console.error(`${chalk.red('[messageController]')} No hay usuario o mensaje`);
-            reject('Información invalida');
+            return reject('Información invalida');
         }
 
         const fullMessage = {
@@ -13,11 +14,19 @@ const addMessage = (user, message) => {
             date: new Date(),
         };
 
-        console.log(fullMessage);
-        resolve(fullMessage);
+        store.add(fullMessage);
+
+        return resolve(fullMessage);
+    });
+}
+
+const getMessages = () => {
+    return new Promise((resolve, reject) => {
+        return resolve(store.list());
     });
 }
 
 module.exports = {
     addMessage,
+    getMessages,
 };
