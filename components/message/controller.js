@@ -26,7 +26,21 @@ const getMessages = () => {
     });
 }
 
+const updateMessage = (id, message) => {
+    return new Promise( async (resolve, reject) => {
+        if (!id || !message) {
+            console.error(`${chalk.red('[messageController]')} No hay id o mensaje`);
+            return reject('Información invalida');
+        }
+
+        const result = await store.updateText(id, message);
+
+        return resolve(result);
+    });
+}
+
 module.exports = {
     addMessage,
     getMessages,
+    updateMessage,
 };
