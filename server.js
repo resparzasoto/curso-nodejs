@@ -1,6 +1,10 @@
 const express = require('express');
 
+const db = require('./db');
 const router = require('./network/routes');
+
+const secretConnection = db.getSecretConnection('telegrom');
+db.connect(secretConnection.connectionString);
 
 var app = express();
 app.use(express.json());
