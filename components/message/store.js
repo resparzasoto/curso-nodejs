@@ -37,10 +37,13 @@ const updateText = async (id, message) => {
     return updateMessage;
 }
 
+const deleteMessage = (id) => {
+    return Model.findByIdAndDelete(id);
+}
+
 module.exports = {
     add: addMessage,
     list: getMessages,
     updateText: updateText,
-    //get
-    //delete
+    remove: deleteMessage,
 };

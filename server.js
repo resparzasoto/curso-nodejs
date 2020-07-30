@@ -1,11 +1,10 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 
 const router = require('./network/routes');
 
 var app = express();
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 router(app);
 

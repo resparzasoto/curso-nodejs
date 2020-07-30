@@ -27,7 +27,7 @@ const getMessages = (filterUser) => {
 }
 
 const updateMessage = (id, message) => {
-    return new Promise( async (resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         if (!id || !message) {
             console.error(`${chalk.red('[messageController]')} No hay id o mensaje`);
             return reject('Información invalida');
@@ -39,8 +39,21 @@ const updateMessage = (id, message) => {
     });
 }
 
+const deleteMessage = (id) => {
+    return new Promise((resolve, reject) => {
+        store.remove(id)
+            .then(() => {
+                resolve();
+            })
+            .catch(e => {
+                reject(e);
+            });
+    });
+}
+
 module.exports = {
     addMessage,
     getMessages,
     updateMessage,
+    deleteMessage,
 };
