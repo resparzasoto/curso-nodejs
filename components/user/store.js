@@ -5,6 +5,17 @@ const addUser = (user)  => {
     return myUser.save();
 }
 
+const getUsers = (filterName) => {
+    let filter = {};
+
+    if (filterName !== null) {
+        filter = { name: new RegExp(filterName, 'i') };
+    }
+
+    return Model.find(filter);
+}
+
 module.exports = {
     add: addUser,
+    list: getUsers,
 };
