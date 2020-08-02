@@ -5,9 +5,17 @@ const addChat = (users) => {
     return newChat.save();
 }
 
-const getChats = () => {
+const listChats = (userId) => {
     return new Promise((resolve, reject) => {
-        Model.find()
+        let filter = {};
+
+        if (userId) {
+            filter = {
+                users: userId
+            };
+        }
+
+        Model.find(filter)
             .populate('users')
             .exec((e, populated) => {
                 if (e) {
@@ -21,5 +29,5 @@ const getChats = () => {
 
 module.exports = {
     add: addChat,
-    list: getChats,
+    list: listChats,
 };

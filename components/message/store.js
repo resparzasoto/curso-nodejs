@@ -5,12 +5,12 @@ const addMessage = (message) => {
     myMessage.save();
 }
 
-const getMessages = async (filterUser) => {
+const getMessages = async (filterMessages) => {
     return new Promise((resolve, reject) => {
         let filter = {};
 
-        if (filterUser !== null) {
-            filter = { user: new RegExp(filterUser, 'i') };
+        if (filterMessages !== null) {
+            filter = { chat: filterMessages };
         }
 
         Model.find(filter)

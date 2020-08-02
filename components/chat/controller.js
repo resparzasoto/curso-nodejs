@@ -2,21 +2,21 @@ const chalk = require('chalk');
 const store = require('./store');
 
 const addChat = (users) => {
-    return new Promise((resolve, reject) => {
-        if (!users) {
-            console.error(`${chalk.red('[messageController]')} No hay usuarios`);
-            return reject('Información invalida');
-        }
+    if (!users || !Array.isArray(users)) {
+        console.error(`${chalk.red('[messageController]')} Usuarios invalidos`);
+        return Promise.reject('Invalid user list');
+    }
 
-        const newChat = { users: users };
+    const newChat = {
+        users: users
+    };
 
-        return resolve(store.add(newChat));
-    });
+    return store.add(newChat);
 }
 
-const getChats = () => {
+const listChats = (userId) => {
     return new Promise((resolve, reject) => {
-        store.list()
+        store.list(userId)
             .then(data => {
                 return resolve(data);
             })
@@ -28,5 +28,5 @@ const getChats = () => {
 
 module.exports = {
     addChat,
-    getChats,
+    listChats,
 };

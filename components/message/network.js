@@ -1,12 +1,18 @@
 const express = require('express');
+const multer = require('multer');
+
 const response = require('../../network/response');
 const controller = require('./controller');
 
 const router = express.Router();
 
+const upload = multer({
+    dest: 'uploads/',
+});
+
 router.get('/', (req, res) => {
-    const filterUser = req.query.user || null;
-    controller.getMessages(filterUser)
+    const filterMessages = req.query.chat || null;
+    controller.getMessages(filterMessages)
         .then(messageList => {
             response.success(req, res, messageList, 200);
         })
@@ -14,8 +20,8 @@ router.get('/', (req, res) => {
             response.error(req, res, 'Error interno', 500, e);
         });
 });
-router.post('/', (req, res) => {
-    controller.addMessage(req.body.user, req.body.message)
+router.post('/', upload.single('file'), (req, res) => {
+    controller.addMessage(req.body.chat, req.body.user, req.body.message)
         .then(fullMessage => {
             response.success(req, res, fullMessage, 201);
         })

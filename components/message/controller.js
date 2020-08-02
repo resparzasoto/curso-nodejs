@@ -1,14 +1,15 @@
 const chalk = require('chalk');
 const store = require('./store');
 
-const addMessage = (user, message) => {
+const addMessage = (chat, user, message) => {
     return new Promise((resolve, reject) => {
-        if (!user || !message) {
-            console.error(`${chalk.red('[messageController]')} No hay usuario o mensaje`);
+        if (!chat || !user || !message) {
+            console.error(`${chalk.red('[messageController]')} No hay chat, mensaje o usuario`);
             return reject('Información invalida');
         }
 
         const fullMessage = {
+            chat: chat,
             user: user,
             message: message,
             date: new Date(),
@@ -20,10 +21,8 @@ const addMessage = (user, message) => {
     });
 }
 
-const getMessages = (filterUser) => {
-    return new Promise((resolve, reject) => {
-        return resolve(store.list(filterUser));
-    });
+const getMessages = (filterMessages) => {
+    return store.list(filterMessages);
 }
 
 const updateMessage = (id, message) => {
