@@ -1,5 +1,5 @@
-const store = require('./store');
 const chalk = require('chalk');
+const store = require('./store');
 
 const addMessage = (user, message) => {
     return new Promise((resolve, reject) => {

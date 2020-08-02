@@ -1,4 +1,5 @@
 const express = require('express');
+const chalk = require('chalk');
 
 const db = require('./db');
 const router = require('./network/routes');
@@ -15,4 +16,4 @@ router(app);
 app.use('/app', express.static('public'));
 
 app.listen(3000);
-console.log('La aplicación está escuchando en http://localhost:3000');
+console.log(chalk.blueBright('[server] La aplicación está escuchando en http://localhost:3000'));
