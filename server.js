@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const server = require('http').Server(app);
@@ -8,8 +9,7 @@ const db = require('./db');
 const socket = require('./socket');
 const router = require('./network/routes');
 
-const secretConnection = db.getSecretConnection('telegrom');
-db.connect(secretConnection.connectionString);
+db.connect(process.env.DB_URI);
 
 app.use(cors());
 app.use(express.json());
@@ -19,8 +19,8 @@ socket.connect(server);
 
 router(app);
 
-app.use('/app', express.static('public'));
+app.use(process.env.PUBLIC_ROUTE, express.static('public'));
 
-server.listen(3000, () => {
-    console.log(chalk.blueBright('[server] La aplicación está escuchando en http://localhost:3000'));
+server.listen(process.env.PORT, () => {
+    console.log(chalk.blueBright(`[server] La aplicación está escuchando en ${process.env.HOST}:${process.env.PORT}`));
 });

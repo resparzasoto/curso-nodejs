@@ -11,7 +11,7 @@ const addMessage = (chat, user, message, file) => {
 
         let fileUrl = '';
         if (file) {
-            fileUrl = 'http://localhost:3000/app/files/' + file.filename;
+            fileUrl = `${process.env.HOST}:${process.env.PORT}${process.env.PUBLIC_ROUTE}${process.env.FILES_ROUTE}/` + file.filename;
         }
 
         const fullMessage = {
