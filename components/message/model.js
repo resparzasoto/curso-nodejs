@@ -19,6 +19,6 @@ const mySchema = new Schema({
     file: String,
 });
 
-const model = mongoose.model('Messages', mySchema);
+const model = mongoose.model('Message', mySchema);
 
 module.exports = model;

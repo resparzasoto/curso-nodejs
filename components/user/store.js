@@ -5,7 +5,7 @@ const addUser = (user)  => {
     return myUser.save();
 }
 
-const getUsers = (filterName) => {
+const listUsers = (filterName) => {
     let filter = {};
 
     if (filterName !== null) {
@@ -17,5 +17,5 @@ const getUsers = (filterName) => {
 
 module.exports = {
     add: addUser,
-    list: getUsers,
+    list: listUsers,
 };

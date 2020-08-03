@@ -5,12 +5,12 @@ const addMessage = (message) => {
     myMessage.save();
 }
 
-const getMessages = async (filterMessages) => {
+const getMessages = async (filterChat) => {
     return new Promise((resolve, reject) => {
         let filter = {};
 
-        if (filterMessages !== null) {
-            filter = { chat: filterMessages };
+        if (filterChat !== null) {
+            filter = { chat: filterChat };
         }
 
         Model.find(filter)

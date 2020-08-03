@@ -3,27 +3,19 @@ const store = require('./store');
 
 const addChat = (users) => {
     if (!users || !Array.isArray(users)) {
-        console.error(`${chalk.red('[messageController]')} Usuarios invalidos`);
+        console.error(`${chalk.red('[messageController]')} Usuarios inválidos`);
         return Promise.reject('Invalid user list');
     }
 
-    const newChat = {
-        users: users
+    const chat = {
+        users: users,
     };
 
-    return store.add(newChat);
+    return store.add(chat);
 }
 
 const listChats = (userId) => {
-    return new Promise((resolve, reject) => {
-        store.list(userId)
-            .then(data => {
-                return resolve(data);
-            })
-            .catch(e => {
-                return reject(e);
-            });
-    });
+    return store.list(userId);
 }
 
 module.exports = {

@@ -4,7 +4,6 @@ const path = require('path')
 
 const response = require('../../network/response');
 const controller = require('./controller');
-
 const router = express.Router();
 
 const storage = multer.diskStorage({
@@ -16,13 +15,13 @@ const upload = multer({
 });
 
 router.get('/', (req, res) => {
-    const filterMessages = req.query.chat || null;
-    controller.getMessages(filterMessages)
+    const filterChat = req.query.chat || null;
+    controller.getMessages(filterChat)
         .then(messageList => {
             response.success(req, res, messageList, 200);
         })
         .catch(e => {
-            response.error(req, res, 'Error interno', 500, e);
+            response.error(req, res, 'Internal error', 500, e);
         });
 });
 router.post('/', upload.single('file'), (req, res) => {
@@ -31,7 +30,7 @@ router.post('/', upload.single('file'), (req, res) => {
             response.success(req, res, fullMessage, 201);
         })
         .catch(e => {
-            response.error(req, res, 'Error interno', 500, e);
+            response.error(req, res, 'Información invalida', 400, e);
         });
 });
 router.patch('/:id', (req, res) => {
@@ -40,7 +39,7 @@ router.patch('/:id', (req, res) => {
             response.success(req, res, data, 200);
         })
         .catch(e => {
-            response.error(req, res, 'Error interno', 500, e);
+            response.error(req, res, 'Internal error', 500, e);
         });
 });
 router.delete('/:id', (req, res) => {
@@ -49,7 +48,7 @@ router.delete('/:id', (req, res) => {
             response.success(req, res, `Mensaje ${req.params.id} eliminado`, 200);
         })
         .catch(e => {
-            response.error(req, res, 'Error interno', 500, e);
+            response.error(req, res, 'Internal error', 500, e);
         });
 });
 

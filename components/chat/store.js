@@ -1,8 +1,8 @@
 const Model = require('./model');
 
-const addChat = (users) => {
-    const newChat = new Model(users);
-    return newChat.save();
+const addChat = (chat) => {
+    const myChat = new Model(chat);
+    return myChat.save();
 }
 
 const listChats = (userId) => {
@@ -11,7 +11,7 @@ const listChats = (userId) => {
 
         if (userId) {
             filter = {
-                users: userId
+                users: userId,
             };
         }
 

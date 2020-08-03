@@ -9,7 +9,7 @@ const addMessage = (chat, user, message, file) => {
             return reject('Información invalida');
         }
 
-        let fileUrl= '';
+        let fileUrl = '';
         if (file) {
             fileUrl = 'http://localhost:3000/app/files/' + file.filename;
         }
@@ -30,8 +30,8 @@ const addMessage = (chat, user, message, file) => {
     });
 }
 
-const getMessages = (filterMessages) => {
-    return store.list(filterMessages);
+const getMessages = (filterChat) => {
+    return store.list(filterChat);
 }
 
 const updateMessage = (id, message) => {
@@ -49,12 +49,16 @@ const updateMessage = (id, message) => {
 
 const deleteMessage = (id) => {
     return new Promise((resolve, reject) => {
+        if (!id) {
+            return reject('Id invalido');
+        }
+
         store.remove(id)
             .then(() => {
-                resolve();
+                return resolve();
             })
             .catch(e => {
-                reject(e);
+                return reject(e);
             });
     });
 }

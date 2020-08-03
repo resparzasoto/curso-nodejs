@@ -12,11 +12,11 @@ const addUser = (name) => {
     return store.add(user);
 }
 
-const getUsers = (filterName) => {
+const listUsers = (filterName) => {
     return store.list(filterName);
 }
 
 module.exports = {
     addUser,
-    getUsers,
+    listUsers,
 };
